@@ -31,13 +31,14 @@ prerequisite(){
  sudo apt-get install -y software-properties-common && sudo add-apt-repository \
  ppa:deadsnakes/ppa && sudo apt-get update && sudo apt-get install -y python3.6 && sudo apt-get install -y python3-pip
 
+  python3_path=`which python3`
 
-  python_path=`which python`
-  python6_path=`which python3.6`
 
-  sudo unlink $python_path
+    which python 1> /dev/null
 
-  sudo ln -s $python_path $python6_path 
+    if [ ! $? -eq 0 ];then
+      sudo ln -s /usr/bin/python $python3_path
+    fi
 
   fi
 }
@@ -48,7 +49,7 @@ download(){
 
   cd marksix 
 
-  pip3 install --user -r package.txt
+  pip3 install -r package.txt
 
 }
 
