@@ -1,5 +1,6 @@
 #!/bin/bash
 
+MARKSIX_PATH=""
 
 set_python_exec(){
 
@@ -59,6 +60,8 @@ download(){
   git clone https://github.com/eirtscience/marksix.git
 
   cd marksix 
+
+  MARKSIX_PATH=`pwd`
   
   set_python_exec
 
@@ -72,6 +75,8 @@ install(){
 }
 
 run(){
+
+  cd $MARKSIX_PATH
 
   case $1 in
    host)
