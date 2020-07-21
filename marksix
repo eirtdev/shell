@@ -35,8 +35,9 @@ prerequisite(){
   python6_path=`which python3.6`
 
   sudo unlink $python_path
-  sudo ln -s $python_path $python6_path
-  
+
+  sudo ln -s $python_path $python6_path 
+
   fi
 }
 
@@ -46,11 +47,7 @@ download(){
 
   cd marksix
 
-  pip3 install -r package.txt
-
-  # git pull origin master
-
-  ./main.sh all
+  pip3 install --user -r package.txt 
 
 }
 
@@ -60,6 +57,17 @@ install(){
     download
 }
 
+run(){
+
+  case $2 in
+   host)
+    ./main.sh all
+   ;;
+   docker)
+    COMPOSE_HTTP_TIMEOUT=100 sudo docker-compose -f docker-compose.yaml up --force-recreate
+   ;;
+}
+
 main(){
   case $1 in
     check-env)
@@ -67,6 +75,11 @@ main(){
     ;;
     install)
         install
+    ;;
+
+    run)
+      shift
+      run $@
     ;;
 
   esac
