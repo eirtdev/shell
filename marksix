@@ -30,7 +30,8 @@ prerequisite(){
   if [ ! $? -eq 0 ];then
  sudo apt-get install -y software-properties-common && sudo add-apt-repository \
  ppa:deadsnakes/ppa && sudo apt-get update && sudo apt-get install -y python3.6 && sudo apt-get install -y python3-pip
-  
+
+
   python_path=`which python`
   python6_path=`which python3.6`
 
@@ -45,9 +46,9 @@ download(){
 
   git clone https://github.com/eirtscience/marksix.git
 
-  cd marksix
+  cd marksix 
 
-  pip3 install --user -r package.txt 
+  pip3 install --user -r package.txt
 
 }
 
@@ -57,11 +58,9 @@ install(){
     download
 }
 
-
-
 run(){
 
-  case $2 in
+  case $1 in
    host)
     ./main.sh all
    ;;
@@ -83,6 +82,9 @@ main(){
     run)
       shift
       run $@
+    ;;
+    kill)
+      ./main.sh kill
     ;;
 
   esac
