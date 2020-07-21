@@ -29,7 +29,7 @@ prerequisite(){
 
   if [ ! $? -eq 0 ];then
  sudo apt-get install -y software-properties-common && sudo add-apt-repository \
- ppa:deadsnakes/ppa && sudo apt-get update && sudo apt-get install -y python3.6 && sudo apt-get install -y python3-pip
+ ppa:deadsnakes/ppa && sudo apt-get update && sudo apt-get install -y python3.6
 
   python3_path=`which python3`
 
@@ -37,9 +37,17 @@ prerequisite(){
     which python 1> /dev/null
 
     if [ ! $? -eq 0 ];then
-      sudo ln -s /usr/bin/python $python3_path
+      sudo ln -s  $python3_path /usr/bin/python
     fi
 
+  fi
+
+  sudo apt update
+
+  which pip3 1> /dev/null
+
+  if [ ! $? -eq 0 ];then
+    sudo apt-get install -y python3-pip
   fi
 }
 
@@ -48,6 +56,7 @@ download(){
   git clone https://github.com/eirtscience/marksix.git
 
   cd marksix 
+  
 
   pip3 install -r package.txt
 
