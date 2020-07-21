@@ -57,6 +57,8 @@ install(){
     download
 }
 
+
+
 run(){
 
   case $2 in
@@ -66,6 +68,7 @@ run(){
    docker)
     COMPOSE_HTTP_TIMEOUT=100 sudo docker-compose -f docker-compose.yaml up --force-recreate
    ;;
+  esac
 }
 
 main(){
