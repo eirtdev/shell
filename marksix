@@ -1,5 +1,17 @@
 #!/bin/bash
 
+
+set_python_exec(){
+
+    python3_path=`which python3`
+
+    python_path=`which python`
+
+    sudo unlink $python_path
+
+    sudo ln -s  $python3_path $python_path
+}
+
 prerequisite(){
 
   can_run=0
@@ -30,16 +42,7 @@ prerequisite(){
   if [ ! $? -eq 0 ];then
  sudo apt-get install -y software-properties-common && sudo add-apt-repository \
  ppa:deadsnakes/ppa && sudo apt-get update && sudo apt-get install -y python3.6
-
-  python3_path=`which python3`
-
-
-    which python 1> /dev/null
-
-    if [ ! $? -eq 0 ];then
-      sudo ln -s  $python3_path /usr/bin/python
-    fi
-
+    
   fi
 
   sudo apt update
@@ -57,9 +60,9 @@ download(){
 
   cd marksix 
   
+  set_python_exec
 
   pip3 install -r package.txt
-
 }
 
 install(){
