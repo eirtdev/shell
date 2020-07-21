@@ -66,24 +66,27 @@ download(){
   set_python_exec
 
   pip3 install -r package.txt
+
+  export $MARKSIX_PATH
 }
 
 install(){
 
+  if [ ! -f ".install" ];then
     prerequisite
     download
+    touch .install
+  fi
 }
 
 run(){
-
-  cd $MARKSIX_PATH
 
   case $1 in
    host)
     ./main.sh all
    ;;
    docker)
-    COMPOSE_HTTP_TIMEOUT=100 sudo docker-compose -f docker-compose.yaml up --force-recreate
+    COMPOSE_HTTP_TIMEOUT=100 sudo docker-compose -f docker-compose.yaml up --force-recreate -d
    ;;
   esac
 }
@@ -94,7 +97,7 @@ main(){
         prerequisite
     ;;
     install)
-        install
+        install $@
     ;;
 
     run)
