@@ -60,14 +60,12 @@ download(){
   git clone https://github.com/eirtscience/marksix.git
 
   cd marksix 
-
-  MARKSIX_PATH=`pwd`
   
   set_python_exec
 
   pip3 install -r package.txt
 
-  export $MARKSIX_PATH
+  export MARKSIX_PATH=`pwd`
 }
 
 install(){
@@ -79,7 +77,22 @@ install(){
   fi
 }
 
+test(){
+
+case $1 in 
+
+  auto)
+    python main.py auto
+  ;;
+
+  chat)
+    python main.py chat
+  ;;
+}
+
 run(){
+
+  install
 
   case $1 in
    host)
@@ -106,6 +119,10 @@ main(){
     ;;
     kill)
       ./main.sh kill
+    ;;
+    test)
+        shift
+        test $@
     ;;
 
   esac
