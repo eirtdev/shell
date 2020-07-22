@@ -88,6 +88,8 @@ case $1 in
   chat)
     python main.py chat
   ;;
+
+esac
 }
 
 run(){
