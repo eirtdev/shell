@@ -88,6 +88,9 @@ case $1 in
   chat)
     python main.py chat
   ;;
+  unit)
+    python -m unittest test.py 
+  ;;
 
 esac
 }
@@ -126,7 +129,6 @@ main(){
         shift
         test $@
     ;;
-
   esac
 
 
