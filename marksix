@@ -109,6 +109,23 @@ run(){
   esac
 }
 
+server(){
+ 
+   case $1 in 
+      web)
+          shift
+          case $1 in 
+
+            port)
+                port=`cat web/.port`
+                echo "The webserver is running on port: $port"
+            ;;
+          esac
+
+      ;;
+    esac
+}
+
 main(){
   case $1 in
     check-env)
@@ -128,6 +145,10 @@ main(){
     test)
         shift
         test $@
+    ;;
+    server)
+      shift
+      server $@
     ;;
   esac
 
