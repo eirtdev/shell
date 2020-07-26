@@ -1,6 +1,4 @@
 #!/usr/bin/python
-
-import requests
 from optparse import OptionParser
 from blocknet.cli.fabricnetwork import start
 
