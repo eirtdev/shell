@@ -37,6 +37,12 @@ prerequisite(){
     sudo apt-get install -y git
   fi
 
+  which python3 1> /dev/null
+
+  if [ ! $? -eq 0 ];then
+    sudo apt-get install -y python3
+  fi
+
   which pip3 1> /dev/null
 
   if [ ! $? -eq 0 ];then
