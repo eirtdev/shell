@@ -14,6 +14,8 @@ prerequisite(){
 
   can_run=0
 
+  sudo apt-get update -y
+
   which docker 1> /dev/null
 
   if [ ! $? -eq 0 ];then
@@ -76,7 +78,7 @@ Send2Trash==1.5.0
 urllib3==1.25.9
 wget==3.2
 zipfile36==0.1.3
-blocknet==0.0.1
+blocknet
     ''' > packages.txt
 
     pip3 install -r packages.txt
