@@ -1,6 +1,52 @@
 #!/bin/bash
 
+
+prerequisite(){
+
+  can_run=0
+
+  which docker 1> /dev/null
+
+  if [ ! $? -eq 0 ];then
+      sudo apt-get install -y docker.io 
+  fi
+
+  which docker-compose 1> /dev/null
+
+  if [ ! $? -eq 0 ];then
+
+    sudo curl -L "https://github.com/docker/compose/releases/download/1.24.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+    sudo chmod +x /usr/local/bin/docker-compose
+
+  fi
+
+  which git 1> /dev/null
+
+  if [ ! $? -eq 0 ];then
+    sudo apt-get install -y git
+  fi
+
+  which python3.6 1> /dev/null
+
+  if [ ! $? -eq 0 ];then
+ sudo apt-get install -y software-properties-common && sudo add-apt-repository \
+ ppa:deadsnakes/ppa && sudo apt-get update && sudo apt-get install -y python3.6
+    
+  fi
+
+  sudo apt update
+
+  which pip3 1> /dev/null
+
+  if [ ! $? -eq 0 ];then
+    sudo apt-get install -y python3-pip
+  fi
+}
+
+
 install(){
+
+  prerequisite
 
   pip install pyunitgen
 
@@ -16,10 +62,7 @@ if __name__ == '__main__':
 
     ''' > /usr/local/bin/pyunitgen
 
-    sudo chmod +x /usr/local/bin/pyunitgen
-
-    rm -rf pyunitgen
-
+    sudo chmod +x /usr/local/bin/pyunitgen && rm -rf pyunitgen
 }
 
 install
