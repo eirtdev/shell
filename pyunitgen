@@ -41,7 +41,7 @@ install(){
 
   prerequisite
 
- 
+  pip3 install pyunitgen
 
     sudo echo '''#!/usr/bin/python3
 import sys
@@ -52,7 +52,7 @@ if __name__ == "__main__":
 
     sys.exit(main())
 
-    ''' > /usr/local/bin/pyunitgen && sudo chmod +x /usr/local/bin/pyunitgen &&  pip3 install pyunitgen && rm -rf pyunitgen 
+    ''' > pyunitgen && sudo chmod +x pyunitgen
 }
 
 install
