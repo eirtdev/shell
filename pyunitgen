@@ -5,11 +5,10 @@ prerequisite(){
 
   can_run=0
 
-  which python3.6 1> /dev/null
+  which python3 1> /dev/null
 
   if [ ! $? -eq 0 ];then
- sudo apt-get install -y software-properties-common && sudo add-apt-repository \
- ppa:deadsnakes/ppa && sudo apt-get update && sudo apt-get install -y python3.6
+  sudo apt-get install -y software-properties-common && sudo apt-get update && sudo apt-get install -y python3.6
     
   fi
 
@@ -20,6 +19,21 @@ prerequisite(){
   if [ ! $? -eq 0 ];then
     sudo apt-get install -y python3-pip
   fi
+
+which python 1> /dev/null
+
+  if [ ! $? -eq 0 ];then
+
+    which python3 1> /dev/null
+
+    if [ $? -eq 0 ];then
+       python3_install_dir=`which python3`
+       sudo ln -s $python3_install_dir /usr/bin/python
+    fi
+
+  fi
+
+
 }
 
 
@@ -29,8 +43,7 @@ install(){
 
  
 
-    sudo echo '''
-#!/usr/bin/python3
+    sudo echo '''#!/usr/bin/python3
 import sys
 from pyunitgen.cli import main
 
