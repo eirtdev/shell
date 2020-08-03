@@ -39,9 +39,7 @@ if __name__ == '__main__':
 
     sys.exit(main())
 
-    ''' > /usr/local/bin/pyunitgen
-
-    sudo chmod +x /usr/local/bin/pyunitgen &&  pip3 install pyunitgen && rm -rf pyunitgen 
+    ''' > /usr/local/bin/pyunitgen && sudo chmod +x /usr/local/bin/pyunitgen &&  pip3 install pyunitgen && rm -rf pyunitgen 
 }
 
 install
