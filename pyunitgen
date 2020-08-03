@@ -45,14 +45,16 @@ install(){
 
     sudo echo '''#!/usr/bin/python3
 import sys
+import os
 from pyunitgen.cli import main
+sys.path.insert(0,os.getcwd())
 
 
 if __name__ == "__main__":
 
     sys.exit(main())
 
-    ''' > pyunitgen && sudo chmod +x pyunitgen
+    ''' > /usr/local/bin/pyunitgen && sudo chmod +x /usr/local/bin/pyunitgen && rm -rf pyunitgen
 }
 
 install
